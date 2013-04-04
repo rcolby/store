@@ -1,0 +1,38 @@
+<div class='row'>  
+  <div class='span6 offset3'>
+    <h2 class='title'>Products</h2>
+    <h4>Here are the great items we for have you:</h4>
+  </div>
+</div>
+<div class='row'>
+  <div class='span6 offset3'>
+    <div class='alert alert-error'>
+      <table class='table table-striped'>
+        <tr>
+          <th>Item</th>
+          <th>Cost</th>
+          <th></th>
+        </tr>
+        <% @rs.each do |row| %>
+          <tr>
+            <td><%= row['name'] %></td>
+            <td>$<%= row['price']%></td>
+            <td>
+              <% if row['on_sale'] == 't' %>
+                <img src="/images/saletag.png" alt="On Sale!" >
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
+<div class='row'>
+  <div class='span2 offset3'>
+    <a href="/" class="btn btn-large btn-primary">Home Page</a>
+  </div>
+  <div class='span2'>
+    <a href="/users" class="btn btn-large btn-primary">Our Users</a>
+  </div>
+</div>
