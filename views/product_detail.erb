@@ -1,0 +1,29 @@
+<div class='row'>  
+  <div class='span6 offset3'>
+    <h2 class='title'>Product Detail</h2>
+  </div>
+</div>
+<div class='row'>
+  <div class='span6 offset3'>
+    <div class='backdrop'>
+      <table class='table table-striped'>
+        <tr>
+          <th>Product ID</th>
+          <th>Item Name</th>
+          <th>Cost</th>
+          <th></th>
+        </tr>
+        <tr>
+          <td><%= @row['id'] %></td>
+          <td><%= @row['name'] %></td>
+          <td>$<%= @row['price'] %></td>
+          <td>
+            <% if @row['on_sale'] == 't' %>
+              <img src="/images/saletag.png" alt="On Sale!" >
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

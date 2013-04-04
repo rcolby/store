@@ -1,13 +1,24 @@
 body {
-  background-color: #d9e2f7;
+  background-color: #FFCC66;
+  padding: 40px;
 }
 
 #container {
-	margin-top: 50px 20px 50px 20px;
+	margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 .title {
-  color: #F47DB6;
-  font-family: 'Macondo Swash Caps', cursive;
+  color: #663300;
+  font-family: 'Shadows Into Light', cursive;
   text-align: center;
+}
+
+.navbar {
+  font-family: 'Shadows Into Light', cursive;
+}
+
+.backdrop {
+  background-color: #66CCFF;
+  border-radius: 10px;
 }

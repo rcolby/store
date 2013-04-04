@@ -1,0 +1,34 @@
+<div class='row'>
+  <div class='span4 offset4'>
+    <h1 class='title'>New Product</h1>
+  </div>
+<div>
+
+<div class='row'>
+  <div class='span4 offset4'>
+    <form action='/new_product' method='post'>
+      <p>
+      	<label for='product_name'>Item Name</label>
+          <input type='text' placeholder='Enter Item Name' name='product_name' />
+      </p>
+      <p>
+        <label for='product_price'>Price</label>  
+        <input type='text' placeholder='Enter Price ex. 0.00' name='product_price' />
+      </p>
+      <p>
+      <p>Is this item on sale?</p>
+      <p>
+        <label class="radio">
+          <input type="radio" name="on_sale" value="f" checked>
+          Aw Dangit.
+        </label>
+        <label class="radio">
+          <input type="radio" name="on_sale" value="t">
+          Hooo-weee!
+        </label>
+      </p>
+        <button class="btn btn-primary" type="submit">Git Er Done</button>
+      </p>
+    </form>
+  </div>
+</div>

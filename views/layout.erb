@@ -3,14 +3,25 @@
 	<head>
     <meta charset='utf-8'>
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Macondo+Swash+Caps' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
     <link rel='stylesheet' href='/style.css'>
 		<title> <%= @title %></title>
 	</head>
 
 	<body>
     <div id='container'>
-      <%= yield %>
+      <div class="navbar">
+        <div class="navbar-inner">
+          <a class="brand" href="#">Git Me To: </a>
+          <ul class="nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/users">Folks</a></li>
+            <li><a href="/products">Stuff We Sell</a></li>
+            <li><a href="/products/new">Add Somethin'</a></li>
+          </ul>
+        </div>
+      </div>
+        <%= yield %>
     </div>
 	</body>
 </html>
