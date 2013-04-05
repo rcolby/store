@@ -16,6 +16,25 @@ configure :development do
   BetterErrors.application_root = File.expand_path("..", __FILE__)
 end
 
+get '/' do
+  @title="Online Tradin' Post"
+  erb :home
+end
+ 
+get '/products' do
+  @title = "Products"
+  sql = "SELECT * FROM products;"
+  @rs = @db.execute(sql)
+  erb :show_products
+end
+
+get '/users' do
+  @title="Our Users"
+  sql = "SELECT * FROM users;"
+  @rs = @db.execute(sql)
+  erb :show_users
+end
+
 get '/products/new' do
   @title="Add A Product"
   erb :new_product
@@ -44,47 +63,36 @@ get '/products/:id' do
   erb :product_detail
 end
 
-get '/users' do
-  @title="Our Users"
-  sql = "SELECT * FROM users;"
-  @rs = @db.execute(sql)
-  erb :show_users
+get '/products/:id/edit' do
+  @title = "Update Somethin'"
+  @id = params[:id]
+  sql = "SELECT * FROM products WHERE id='#{@id}';"
+  @row = @db.get_first_row(sql)
+
+  erb :product_update
 end
- 
-get '/products' do
-  @title = "Products"
-  sql = "SELECT * FROM products;"
-  @rs = @db.execute(sql)
-  erb :show_products
+
+post '/products/:id/edit' do
+  @title = "Updated!"
+  @id = params[:id]
+  name = params[:product_name]
+  price = params[:product_price]
+  on_sale = params[:on_sale]
+  sql = "UPDATE products SET name = '#{name}', price = '#{price}', on_sale = '#{on_sale}'  WHERE id='#{@id}';"
+
+  @db.execute(sql)
+
+  @name = name
+  @price = price
+
+  erb :product_updated
 end
- 
-get '/' do
-  @title="Online Tradin' Post"
-  erb :home
+
+delete '/products/:id' do
+  @id = params[:id]
+  sql = "DELETE FROM products WHERE id = '#{@id}';"
+  @db.execute(sql)
+
+  redirect "/products"
+
 end
- 
- 
- 
- 
- 
- 
- 
- 
- 
-=begin
- 
-  <form method='post' action='/create'>
-    <input type='text' name='name' autofocus>
-    <input type='text' name='photo'>
-    <input type='text' name='breed'>
-    <button>dog me!</button>
-  </form>
- 
- 
-  post '/create' do
-  end
- 
- 
-  redirect '/'
- 
-=end

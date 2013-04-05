@@ -4,7 +4,6 @@
       <h1 class='title'>Products</h1>
       <h4>Woohoo! There's some dynamite deals!</h4>
     </div>
-
   </div>
 </div>
 <div class='row'>
@@ -18,7 +17,7 @@
         </tr>
         <% @rs.each do |row| %>
           <tr>
-            <td><%= row['name'] %></td>
+            <td><a href="/products/<%=row['id'] %>"><%= row['name'] %></a></td>
             <td>$<%= row['price'] %></td>
             
             <td>

@@ -1,5 +1,5 @@
 body {
-  background-color: #FFCC66;
+  background-color: #FEE6B3;
   padding: 40px;
 }
 
@@ -9,7 +9,7 @@ body {
 }
 
 .title {
-  color: #663300;
+  color: #B28F47;
   font-family: 'Shadows Into Light', cursive;
   text-align: center;
 }
@@ -19,6 +19,11 @@ body {
 }
 
 .backdrop {
-  background-color: #66CCFF;
+  background-color: #FEF2D9;
   border-radius: 10px;
+  padding: 10px;
+}
+
+.set_apart {
+  margin-top: 20px;
 }

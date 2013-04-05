@@ -1,21 +1,20 @@
 <div class='row'>
   <div class='span4 offset4'>
     <div class="page-header">
-      <h1 class='title'>Add A Product</h1>
+      <h1 class='title'>Update This Here Product</h1>
     </div>
   </div>
 <div>
-
-<div class='row'>
   <div class='span4 offset4'>
-    <form action='/products/new' method='post'>
+    <h4>Put In Yer New Info</h4>
+    <form action='/products/<%= @id %>/edit' method='post'>
       <p>
-      	<label for='product_name'>Item Name</label>
-          <input type='text' placeholder='Enter Item Name' name='product_name' />
+      	<label for='product_name'>New Item Name</label>
+          <input type='text' placeholder='Enter New Item Name' name='product_name' value = "<%= @row['name']%>" />
       </p>
       <p>
-        <label for='product_price'>Price</label>  
-        <input type='text' placeholder='Enter Price ex. 9.99' name='product_price' />
+        <label for='product_price'>New Price</label>  
+        <input type='text' placeholder='Enter New Price ex. 9.99' name='product_price' value = "<%= @row['price'] %>" />
       </p>
       <p>
       <p>Is this item on sale?</p>
