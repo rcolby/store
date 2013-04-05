@@ -47,6 +47,16 @@ get '/products/new' do
   erb :new_product
 end
 
+
+get '/products/search' do
+  @title = "Search Results"
+  @q = params[:q]
+  file = open("http://search.twitter.com/search.json?q=#{URI.escape(@q)}")
+  @results = JSON.load(file.read)
+
+  erb :search_results
+end
+
 post '/products/new' do
   @title = "Product Added"
   name = params[:product_name]
@@ -63,18 +73,11 @@ get '/products/:id' do
   id = params[:id]
   @row = @db.get_first_row("SELECT * FROM products WHERE id='#{id}';")
 
-  @title = @row['name']
+  # @title = @row['name']
 
   erb :product_detail
 end
 
-get '/products/search' do
-  @q = params[:q]
-  file = open("http://search.twitter.com/search.json?q=#{URI.escape(@q)}")
-  @results = JSON.load(file.read)
-
-  erb :search_results
-end
 
 get '/products/:id/edit' do
   @title = "Update Somethin'"

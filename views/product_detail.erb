@@ -11,6 +11,7 @@
           <th>Product ID</th>
           <th>Item Name</th>
           <th>Cost</th>
+          <th>Search</th>
           <th></th>
         </tr>
         <tr>
@@ -18,11 +19,14 @@
           <td><%= @row['name'] %></td>
           <td>$<%= @row['price'] %></td>
           <td>
+            <a href="/products/search?q=<%= URI.escape(@row['name']) %>">Search</a>
+          </td> 
+          <td>
             <% if @row['on_sale'] == 't' %>
               <img src="/images/saletag.png" alt="On Sale!" >
-            <% end %>
           </td>
         </tr>
+          <% end %>
       </table>
     </div>
     <div class='set_apart'>

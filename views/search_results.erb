@@ -2,7 +2,29 @@
   <div class='span6 offset3'>
     <div class="page-header">
       <h1 class='title'>Search Results</h1>
-      <h4>Here's what other folks are sayin' on the Twitters!</h4>
+      <h4>Here's what folks are tweetin' about <%= @q %>:</h4>
     </div>
+  </div>
+</div>
+<div class='row'>  
+  <div class='span6 offset3'>
+    <div class='backdrop'>
+      <table class='table table-striped'>
+        <tr>
+          <th>User</th>
+          <th>Tweet</th>
+        </tr>
+    	     <% @results["results"].each do | result | %>
+            <tr>
+              <td>
+    		        <img src"<%= result["profile_image_url"] %>" />
+              </td>
+              <td>
+                <%= result["text"] %>
+              </td>
+            </tr>
+    	       <% end %>
+      </table>
+    <div>
   </div>
 </div>
