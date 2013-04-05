@@ -26,15 +26,13 @@ end
  
 get '/products' do
   @title = "Products"
-  sql = "SELECT * FROM products;"
   @rs = @db.execute("SELECT * FROM products;")
   erb :show_products
 end
 
 get '/users' do
   @title="Our Users"
-  sql = "SELECT * FROM users;"
-  @rs = @db.execute(sql)
+  @rs = @db.execute("SELECT * FROM users;")
   erb :show_users
 end
 
@@ -54,8 +52,7 @@ post '/products/new' do
   name = params[:product_name]
   price = params[:product_price]
   on_sale = params[:on_sale]
-  sql = "INSERT INTO products('name', 'price', 'on_sale') VALUES('#{name}', '#{price}', '#{on_sale}');"
-  @rs = @db.execute(sql)
+  @rs = @db.execute("INSERT INTO products('name', 'price', 'on_sale') VALUES('#{name}', '#{price}', '#{on_sale}');")
 
   @name = name
   @price = price
@@ -64,8 +61,7 @@ end
 
 get '/products/:id' do
   id = params[:id]
-  sql = "SELECT * FROM products WHERE id='#{id}';"
-  @row = @db.get_first_row(sql)
+  @row = @db.get_first_row("SELECT * FROM products WHERE id='#{id}';")
 
   @title = @row['name']
 
@@ -83,8 +79,7 @@ end
 get '/products/:id/edit' do
   @title = "Update Somethin'"
   @id = params[:id]
-  sql = "SELECT * FROM products WHERE id='#{@id}';"
-  @row = @db.get_first_row(sql)
+  @row = @db.get_first_row("SELECT * FROM products WHERE id='#{@id}';")
 
   erb :product_update
 end
@@ -95,9 +90,8 @@ post '/products/:id/edit' do
   name = params[:product_name]
   price = params[:product_price]
   on_sale = params[:on_sale]
-  sql = "UPDATE products SET name = '#{name}', price = '#{price}', on_sale = '#{on_sale}'  WHERE id='#{@id}';"
 
-  @db.execute(sql)
+  @db.execute("UPDATE products SET name = '#{name}', price = '#{price}', on_sale = '#{on_sale}'  WHERE id='#{@id}';")
 
   @name = name
   @price = price
@@ -107,8 +101,7 @@ end
 
 delete '/products/:id' do
   @id = params[:id]
-  sql = "DELETE FROM products WHERE id = '#{@id}';"
-  @db.execute(sql)
+  @db.execute("DELETE FROM products WHERE id = '#{@id}';")
 
   redirect "/products"
 
