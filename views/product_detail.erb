@@ -8,14 +8,17 @@
     <div class='backdrop'>
       <table class='table table-striped'>
         <tr>
-          <th>Product ID</th>
+          <th></th>
           <th>Item Name</th>
           <th>Cost</th>
           <th>Search</th>
-          <th></th>
         </tr>
         <tr>
-          <td><%= @row['id'] %></td>
+          <td>
+            <% if @row['on_sale'] == 't' %>
+              <img src="/images/saletag.png" alt="On Sale!" >
+            <% end %>
+          </td>
           <td><%= @row['name'] %></td>
           <td>$<%= @row['price'] %></td>
           <td>
@@ -23,12 +26,7 @@
               <img src="/images/twitter_logo.png" class="img-circle" alt="Find Tweets About This Product" />
             </a>
           </td> 
-          <td>
-            <% if @row['on_sale'] == 't' %>
-              <img src="/images/saletag.png" alt="On Sale!" >
-          </td>
         </tr>
-          <% end %>
       </table>
     </div>
   </div>
