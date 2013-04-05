@@ -69,6 +69,12 @@ post '/products/new' do
   erb :product_created
 end
 
+get '/products/manage' do
+  @title = "Manage Products"
+  @rs = @db.execute("SELECT * FROM products;")
+  erb :manage_products
+end
+
 get '/products/:id' do
   id = params[:id]
   @row = @db.get_first_row("SELECT * FROM products WHERE id='#{id}';")

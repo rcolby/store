@@ -17,7 +17,8 @@
     	     <% @results["results"].each do | result | %>
             <tr>
               <td>
-    		        <img src"<%= result["profile_image_url"] %>" />
+    		        <img src='<%= result["profile_image_url"] %>' /><br />
+                                <%= result["from_user"] %>
               </td>
               <td>
                 <%= result["text"] %>

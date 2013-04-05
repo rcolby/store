@@ -19,7 +19,9 @@
           <td><%= @row['name'] %></td>
           <td>$<%= @row['price'] %></td>
           <td>
-            <a href="/products/search?q=<%= URI.escape(@row['name']) %>">Search</a>
+            <a href="/products/search?q=<%= URI.escape(@row['name']) %>">
+              <img src="/images/twitter_logo.png" class="img-circle" alt="Find Tweets About This Product" />
+            </a>
           </td> 
           <td>
             <% if @row['on_sale'] == 't' %>
@@ -28,17 +30,6 @@
         </tr>
           <% end %>
       </table>
-    </div>
-    <div class='set_apart'>
-      <div class='span4'>
-        <a href="/products/<%= @row['id'] %>/edit" class="btn btn-warning">Update</a>
-      </div>
-      <div class='span4'>
-        <form action="/products/<%= @row['id'] %>" method="post">
-          <input type="hidden" name="_method" value="delete" /> 
-          <input type="submit" class= "btn btn-danger" value="Delete" />
-        </form>
-      </div>
     </div>
   </div>
 </div>

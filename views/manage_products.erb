@@ -1,0 +1,56 @@
+<div class='row'>  
+  <div class='span6 offset3'>
+    <div class="page-header">
+      <h1 class='title'>Manage Products</h1>
+      <h4 class='set_apart'>Need to make some changes?</h4>
+    </div>
+  </div>
+</div>
+<div class='row'>
+  <div class='span6 offset3'>
+    <a href='/products/new' class='btn btn-large btn-block btn-primary'>Add Somethin'</a>
+  </div>
+</div>
+<div class='row'>
+  <div class='span6 offset3'>
+    <div class='backdrop'>
+      <table class='table table-striped'>
+        <tr>
+          <th>ID</th>
+          <th>Item</th>
+          <th>Cost</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+        <% @rs.each do |row| %>
+          <tr>
+            <td>
+              <%= row['id'] %>
+            </td>
+            <td>
+              <a href="/products/<%=row['id'] %>"><%= row['name'] %></a>
+            </td>
+            <td>
+              $<%= row['price'] %>
+            </td>
+            <td>
+              <a href="/products/<%= row['id'] %>/edit" class="btn btn-warning">Update</a>
+            </td>
+            <td>
+               <form action="/products/<%= row['id'] %>" method="post">
+                <input type="hidden" name="_method" value="delete" /> 
+                <input type="submit" class= "btn btn-danger" value="Delete" />
+              </form>
+            </td>
+            <td>
+              <% if row['on_sale'] == 't' %>
+                <img src="/images/saletag.png" alt="On Sale!" >
+            </td>
+            <% end %>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

@@ -2,7 +2,7 @@
   <div class='span6 offset3'>
     <div class="page-header">
       <h1 class='title'>Products</h1>
-      <h4>Woohoo! There's some dynamite deals!</h4>
+      <h4 class='set_apart'>Woohoo! There's some dynamite deals!</h4>
     </div>
   </div>
 </div>
@@ -13,15 +13,17 @@
         <tr>
           <th>Item</th>
           <th>Cost</th>
-          <th></th>
           <th>Search</th>
+          <th></th>
         </tr>
         <% @rs.each do |row| %>
           <tr>
             <td><a href="/products/<%=row['id'] %>"><%= row['name'] %></a></td>
             <td>$<%= row['price'] %></td>
             <td>
-              <a href="/products/search?q=<%= URI.escape(row['name']) %>">Search</a>
+              <a href="/products/search?q=<%= URI.escape(row['name']) %>">
+                <img src="/images/twitter_logo.png" class="img-circle" alt="Find Tweets About This Product" />
+              </a>
             </td>
             <td>
               <% if row['on_sale'] == 't' %>
