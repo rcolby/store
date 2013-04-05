@@ -5,6 +5,9 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'sqlite3'
 require 'better_errors'
+require 'open-uri'
+require 'json'
+require 'uri'
 
 before do
   @db = SQLite3::Database.new "store.sqlite3"
@@ -24,7 +27,7 @@ end
 get '/products' do
   @title = "Products"
   sql = "SELECT * FROM products;"
-  @rs = @db.execute(sql)
+  @rs = @db.execute("SELECT * FROM products;")
   erb :show_products
 end
 
@@ -33,6 +36,12 @@ get '/users' do
   sql = "SELECT * FROM users;"
   @rs = @db.execute(sql)
   erb :show_users
+end
+
+get '/users.json' do
+  @rs = @db.execute("SELECT id, name from users;")
+  @rs.to_json
+
 end
 
 get '/products/new' do
@@ -61,6 +70,14 @@ get '/products/:id' do
   @title = @row['name']
 
   erb :product_detail
+end
+
+get '/products/search' do
+  @q = params[:q]
+  file = open("http://search.twitter.com/search.json?q=#{URI.escape(@q)}")
+  @results = JSON.load(file.read)
+
+  erb :search_results
 end
 
 get '/products/:id/edit' do
