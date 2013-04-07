@@ -8,6 +8,7 @@ require 'better_errors'
 require 'open-uri'
 require 'json'
 require 'uri'
+require 'openssl'
 
 before do
   @db = SQLite3::Database.new "store.sqlite3"
@@ -78,8 +79,13 @@ end
 get '/products/:id' do
   id = params[:id]
   @row = @db.get_first_row("SELECT * FROM products WHERE id='#{id}';")
+  @title = @row['name']
 
-  # @title = @row['name']
+  file = open("https://www.googleapis.com/shopping/search/v1/public/products?key=AIzaSyBNbIG2XWlvwJ0Cwx-CXR9-9DwzXOAlzJ4&country=US&q=#{URI.escape(@title)}&alt=json",:ssl_verify_mode => OpenSSL::SSL::VERIFY_NONE)
+  results = JSON.load(file.read)
+  @prod_pic = results["items"][0]["product"]["images"][0]["link"]
+  @prod_desc = results["items"][0]["product"]["description"]
+  @buy_link = results["items"][0]["product"]["link"]
 
   erb :product_detail
 end
@@ -112,6 +118,6 @@ delete '/products/:id' do
   @id = params[:id]
   @db.execute("DELETE FROM products WHERE id = '#{@id}';")
 
-  redirect "/products"
+  redirect "/products/manage"
 
 end

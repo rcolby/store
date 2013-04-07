@@ -3,15 +3,19 @@
     <h2 class='title'>Product Detail</h2>
   </div>
 </div>
+
 <div class='row'>
-  <div class='span6 offset3'>
+  <div class='span10 offset1'>
     <div class='backdrop'>
       <table class='table table-striped'>
         <tr>
           <th></th>
           <th>Item Name</th>
+          <th>Image</th>
+          <th>Description</th>
           <th>Cost</th>
           <th>Search</th>
+          <th>Link</th>
         </tr>
         <tr>
           <td>
@@ -19,13 +23,30 @@
               <img src="/images/saletag.png" alt="On Sale!" >
             <% end %>
           </td>
-          <td><%= @row['name'] %></td>
-          <td>$<%= @row['price'] %></td>
+          <td>
+            <%= @row['name'] %>
+          </td>
+          <td>
+            <div class="prod_pic">
+              <img src="<%= @prod_pic %>" class="prod_img" alt="Item Image" />
+            </div>
+          </td>
+          <td>
+            <div class="prod_desc">
+              <p><%= @prod_desc %></p>
+            </div>
+          </td>
+          <td>
+            $<%= @row['price'] %>
+          </td>
           <td>
             <a href="/products/search?q=<%= URI.escape(@row['name']) %>">
               <img src="/images/twitter_logo.png" class="img-circle" alt="Find Tweets About This Product" />
             </a>
           </td> 
+          <td>
+            <a href="<%= @buy_link %>" class="btn btn-success" target="_blank">Buy</a>
+          </td>
         </tr>
       </table>
     </div>
